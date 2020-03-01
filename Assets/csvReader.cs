@@ -39,9 +39,10 @@ public class csvReader : MonoBehaviour
     public List<Tuple<string, int>> Read(string file) //list[문제 번호]=dic(문제, 정답 인덱스)
     {
         var list = new List<Tuple<string, int>>();
-        StreamReader sr = new StreamReader(Application.dataPath + "/" + file);
+        TextAsset sourcefile = Resources.Load<TextAsset>("stage");
+        StringReader sr = new StringReader(sourcefile.text);
 
-        while (!sr.EndOfStream)
+        while (sr.Peek() > -1)
         {
             string data_String = sr.ReadLine();
 

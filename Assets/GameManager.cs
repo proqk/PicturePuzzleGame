@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public csvReader csvreader; //csv파일 읽는 스크립트
     List<Tuple<string, int>> data; //스테이지와 정답 리스트
     List<BoxManager> bm; //박스매니저 리스트
+    public ButtonManager ButtonManager; //마지막 스테이지에 도달하면 뒤로 가기 버튼과 동일
+    public TextToSpeech tts;
 
     void Start()
     {
@@ -58,6 +60,10 @@ public class GameManager : MonoBehaviour
 
         this.SetAllnewImage();
         this.q();
+
+        if (data.Count == 0) Debug.Log("csv data empty");
+        else if (nowStage == 0) Debug.Log("nowStage empty");
+        else if (box1.Length == 0) Debug.Log("box image empty");
     }
 
     public Sprite GetnewImage(int num)
@@ -127,16 +133,25 @@ public class GameManager : MonoBehaviour
         {
             O.SetActive(false);
             nowStage += 1; //맞으면 다음 스테이지로 자동 이동
-            this.q();
+            if(nowStage == data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
+            {
+                ButtonManager.onClick();
+            }
+            else this.q(); //그렇지 않다면 다음 스테이지로
         }
     } //O,X출력 후 1초 대기
 
+    public void textread() //문제를 읽는다
+    {
+        tts.read(data[nowStage].Item1);
+    }
 
     public void q() //스테이지 시작
     {
         question.text = data[nowStage].Item1; //문제 텍스트 바꾸기
         answer_image = data[nowStage].Item2; //문제 정답 이미지 인덱스 저장
         this.SetAllnewImage(); //전체 이미지를 새로 뽑는다
+        this.textread(); //문제(이렇게 한 이유: 사운드 버튼 때문)
 
         //정답인 이미지를 위에 붙인다
         if (nowStage >= 1 && nowStage <= 13)
@@ -164,7 +179,7 @@ public class GameManager : MonoBehaviour
             bm[4].gameObject.GetComponent<Image>().sprite = box5[answer_image];
             answer = 5;
         }
-        else if (nowStage >= 44 && nowStage <= 47)
+        else if (nowStage >= 44 && nowStage <= 49)
         {
             bm[5].gameObject.GetComponent<Image>().sprite = box6[answer_image];
             answer = 6;
