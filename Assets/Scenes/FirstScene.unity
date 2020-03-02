@@ -225,7 +225,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ce3dc9b95a7a7c04ab105dd806a4f404, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.355
   m_Pitch: 1
   Loop: 1
@@ -454,10 +454,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 70
+    m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 7
+    m_MinSize: 6
     m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uADF8\uB9BC \uB9DE\uD788\uAE30 \uAC8C\uC784"
+  m_Text: "\uC774\uBAA8\uD2F0\uCF58 \uB9DE\uCD94\uAE30 \uAC8C\uC784"
 --- !u!222 &890693393
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -10,11 +10,13 @@ public class TextToSpeech : MonoBehaviour
     {
         audioSource = gameObject.GetComponent<AudioSource>();
 
-        //텍스트에 ?나 !가 있다면 없애줌(오디오 파일명 일치)
-        if (text.IndexOf("!") != -1 || text.IndexOf("?") != -1)
-        {
-            text = System.Text.RegularExpressions.Regex.Replace(text, @"[!?]", "");
-        }
+        //텍스트에 ?나 !나 숫자가 있다면 없애줌(오디오 파일명 일치)
+        //if (text.IndexOf("!") != -1 || text.IndexOf("?") != -1)
+        //{
+        //    text = System.Text.RegularExpressions.Regex.Replace(text, @"[!?]", "");
+        //}
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"[!?0-9]", "");
+        //print(text);
 
         audioSource.clip = Resources.Load<AudioClip>("Audios/"+text);
         audioSource.Play();

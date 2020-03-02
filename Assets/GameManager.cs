@@ -60,10 +60,6 @@ public class GameManager : MonoBehaviour
 
         this.SetAllnewImage();
         this.q();
-
-        if (data.Count == 0) Debug.Log("csv data empty");
-        else if (nowStage == 0) Debug.Log("nowStage empty");
-        else if (box1.Length == 0) Debug.Log("box image empty");
     }
 
     public Sprite GetnewImage(int num)
@@ -125,19 +121,40 @@ public class GameManager : MonoBehaviour
         StartCoroutine(WaitAndPrint());
     } //맞았을 때 다음 스테이지로
 
+    IEnumerator AvoidFastClick() //선택지를 누르고 O/X가 뜨는 중에는 아무것도 클릭못함
+    {
+        box1Image.GetComponent<Button>().interactable = false;
+        box2Image.GetComponent<Button>().interactable = false;
+        box3Image.GetComponent<Button>().interactable = false;
+        box4Image.GetComponent<Button>().interactable = false;
+        box5Image.GetComponent<Button>().interactable = false;
+        box6Image.GetComponent<Button>().interactable = false;
+        yield return new WaitForSeconds(1); //1초 대기
+    }
     IEnumerator WaitAndPrint()
     {
-        yield return new WaitForSeconds(1);
-        if (X.activeSelf == true) X.SetActive(false);
+        yield return AvoidFastClick();
+        box1Image.GetComponent<Button>().interactable = true; //1초 대기 후에는 클릭할 수 있어야 함
+        box2Image.GetComponent<Button>().interactable = true;
+        box3Image.GetComponent<Button>().interactable = true;
+        box4Image.GetComponent<Button>().interactable = true;
+        box5Image.GetComponent<Button>().interactable = true;
+        box6Image.GetComponent<Button>().interactable = true;
+
+        if (X.activeSelf == true)
+        {
+            X.SetActive(false);
+        }
         else
         {
             O.SetActive(false);
             nowStage += 1; //맞으면 다음 스테이지로 자동 이동
-            if(nowStage == data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
+            PlayerPrefs.SetInt("levelReached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
+            if (nowStage == data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
             {
                 ButtonManager.onClick();
             }
-            else this.q(); //그렇지 않다면 다음 스테이지로
+            else this.q(); //그렇지 않다면 다음 스테이지로    
         }
     } //O,X출력 후 1초 대기
 
@@ -151,7 +168,7 @@ public class GameManager : MonoBehaviour
         question.text = data[nowStage].Item1; //문제 텍스트 바꾸기
         answer_image = data[nowStage].Item2; //문제 정답 이미지 인덱스 저장
         this.SetAllnewImage(); //전체 이미지를 새로 뽑는다
-        this.textread(); //문제(이렇게 한 이유: 사운드 버튼 때문)
+        //this.textread(); //문제(이렇게 한 이유: 사운드 버튼 때문)
 
         //정답인 이미지를 위에 붙인다
         if (nowStage >= 1 && nowStage <= 13)
