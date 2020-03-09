@@ -16,7 +16,6 @@ public class LevelLock : MonoBehaviour
         Button[] stages = stageNumObject.GetComponentsInChildren<Button>();
 
         levelat = PlayerPrefs.GetInt("levelReached");
-        print(levelat);
         for (int i = levelat + 1; i < stages.Length; i++)
         {
             stages[i].interactable = false;
