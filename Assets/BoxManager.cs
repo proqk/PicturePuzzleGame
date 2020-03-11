@@ -5,18 +5,31 @@ using UnityEngine.UI;
 
 public class BoxManager : MonoBehaviour
 {
-    public GameManager gm;
+    public GameManager1 gm1;
+    public GameManager2 gm2;
     public int me;
 
-    public void OnClickBox()
+    public void OnClickBox1()
     {
-        if (me == gm.answer)
+        if (me == gm1.answer)
         {
-            gm.correct();
+            gm1.correct();
         }
         else
         {
-            gm.recallStage(gm.nowStage);
+            gm1.recallStage(gm1.nowStage);
+        }
+    }
+
+    public void OnClickBox2()
+    {
+        if (me == gm2.answer)
+        {
+            gm2.correct();
+        }
+        else
+        {
+            gm2.recallStage(gm2.nowStage);
         }
     }
 }

@@ -203,7 +203,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 129727178}
-        m_MethodName: OnClickBox
+        m_MethodName: OnClickBox1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -261,7 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bafe1a999a87845a5cb31295ffa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1984482082}
+  gm1: {fileID: 1984482082}
+  gm2: {fileID: 0}
   me: 0
 --- !u!1 &194288391
 GameObject:
@@ -388,7 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bafe1a999a87845a5cb31295ffa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1984482082}
+  gm1: {fileID: 1984482082}
+  gm2: {fileID: 0}
   me: 0
 --- !u!114 &259484043
 MonoBehaviour:
@@ -434,7 +436,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 259484042}
-        m_MethodName: OnClickBox
+        m_MethodName: OnClickBox1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -975,7 +977,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bafe1a999a87845a5cb31295ffa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1984482082}
+  gm1: {fileID: 1984482082}
+  gm2: {fileID: 0}
   me: 0
 --- !u!114 &573623679
 MonoBehaviour:
@@ -1021,7 +1024,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 573623678}
-        m_MethodName: OnClickBox
+        m_MethodName: OnClickBox1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1296,7 +1299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bafe1a999a87845a5cb31295ffa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1984482082}
+  gm1: {fileID: 1984482082}
+  gm2: {fileID: 0}
   me: 0
 --- !u!114 &727079483
 MonoBehaviour:
@@ -1342,7 +1346,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 727079482}
-        m_MethodName: OnClickBox
+        m_MethodName: OnClickBox1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2357,7 +2361,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1604294230}
-        m_MethodName: onClick
+        m_MethodName: Scene1ToStage1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2556,7 +2560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bafe1a999a87845a5cb31295ffa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1984482082}
+  gm1: {fileID: 1984482082}
+  gm2: {fileID: 0}
   me: 0
 --- !u!114 &1840925556
 MonoBehaviour:
@@ -2602,7 +2607,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1840925555}
-        m_MethodName: OnClickBox
+        m_MethodName: OnClickBox1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2906,7 +2911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bafe1a999a87845a5cb31295ffa839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1984482082}
+  gm1: {fileID: 1984482082}
+  gm2: {fileID: 0}
   me: 0
 --- !u!114 &2120371279
 MonoBehaviour:
@@ -2952,7 +2958,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2120371278}
-        m_MethodName: OnClickBox
+        m_MethodName: OnClickBox1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

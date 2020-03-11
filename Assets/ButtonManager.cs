@@ -2,33 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
     GameObject sn, BackgroundMusic, gm;
     AudioSource backmusic;
 
-    public void onClick() //문제 화면->스테이지 화면으로 돌아가기
+    public void Scene1ToStage1() //감정표현->감정표현 스테이지 화면으로
     {
         sn = GameObject.Find("LevelSelector");
         Destroy(sn);
-        SceneManager.LoadScene("Stage");
+        SceneManager.LoadScene("FirstStage");
     }
 
-    public void StartSceneOnClick() //첫 화면에서 스테이지 화면으로
+    public void MaintoScene1() //첫 화면에서 1스테이지 화면으로
     {        
-        SceneManager.LoadScene("Stage");
+        SceneManager.LoadScene("FirstStage");
+    }
+    public void MaintoScene2() //첫 화면에서 2스테이지 화면으로
+    {
+        SceneManager.LoadScene("SecondStage");
+    }
+    public void MaintoScene3() //첫 화면에서 3스테이지 화면으로
+    {
+        SceneManager.LoadScene("ThirdStage");
     }
 
-    public void StageSceneOnClick() //스테이지에서 첫화면으로
+    public void StageToMain() //스테이지에서 첫화면으로
     {
-        SceneManager.LoadScene("FirstScene");
+        SceneManager.LoadScene("Main");
     }
 
     public void SoundButton() //문제 텍스트 읽는 소리 버튼
     {
         gm = GameObject.Find("GameManager");
-        gm.GetComponent<GameManager>().textread();
+        gm.GetComponent<GameManager1>().textread();
         /*
          여기서
          tts = GameObject.Find("tts");
@@ -47,5 +56,15 @@ public class ButtonManager : MonoBehaviour
         backmusic = BackgroundMusic.GetComponent<AudioSource>(); //배경음악 저장해둠
         if (backmusic.isPlaying) backmusic.Pause();
         else backmusic.Play();
+    }
+
+    public void ScrollToTop()
+    {
+        GameObject.Find("ScrollRect").GetComponent<ScrollRect>().verticalNormalizedPosition = 1f;
+    }
+
+    public void ScrollToBottom()
+    {
+        GameObject.Find("ScrollRect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
     }
 }
