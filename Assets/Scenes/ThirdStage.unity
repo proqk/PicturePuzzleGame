@@ -705,7 +705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1db3c1da4d35f4b9f4a8fe73129324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 4247566763385319570, guid: 608cd6d058c04034691353612b81d73b, type: 3}
+  button: {fileID: 4247566763385319570, guid: bb80230fed27b45459fcfa87e1fb1ced, type: 3}
+  filename: symbolstage
 --- !u!4 &619241382
 Transform:
   m_ObjectHideFlags: 0
@@ -1315,7 +1316,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1459651881}
-        m_MethodName: StageSceneOnClick
+        m_MethodName: StageToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -15,6 +15,18 @@ public class ButtonManager : MonoBehaviour
         Destroy(sn);
         SceneManager.LoadScene("FirstStage");
     }
+    public void Scene2ToStage2() //상징->상징 스테이지 화면으로
+    {
+        sn = GameObject.Find("LevelSelector");
+        Destroy(sn);
+        SceneManager.LoadScene("SecondStage");
+    }
+    public void Scene3ToStage3() //단어->단어표현 스테이지 화면으로
+    {
+        sn = GameObject.Find("LevelSelector");
+        Destroy(sn);
+        SceneManager.LoadScene("ThirdStage");
+    }
 
     public void MaintoScene1() //첫 화면에서 1스테이지 화면으로
     {        
@@ -34,7 +46,7 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    public void SoundButton() //문제 텍스트 읽는 소리 버튼
+    public void SoundButtonScene1() //문제 텍스트 읽는 소리 버튼
     {
         gm = GameObject.Find("GameManager");
         gm.GetComponent<GameManager1>().textread();
@@ -48,6 +60,18 @@ public class ButtonManager : MonoBehaviour
          왜냐하면 soundbutton은 누를 때마다 새로 호출되는데 q()는 스테이지 시작에 한 번 시작이니까 
          좀 더 깔끔하게 짤 수 있는 방법을 모르겠음(gm에 함수를 추가하고 싶지 않았음)      
          */
+    }
+    public void SoundButtonScene2() //문제 텍스트 읽는 소리 버튼
+    {
+        gm = GameObject.Find("GameManager");
+        gm.GetComponent<GameManager2>().textread();
+
+    }
+    public void SoundButtonScene3() //문제 텍스트 읽는 소리 버튼
+    {
+        gm = GameObject.Find("GameManager");
+        gm.GetComponent<GameManager3>().textread();
+
     }
 
     public void BackGroundMusicOffButton() //배경음악 키고 끄는 버튼

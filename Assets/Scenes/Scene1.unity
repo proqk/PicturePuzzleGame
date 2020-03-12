@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -70}
+  m_AnchoredPosition: {x: -230, y: -70}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129727175
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 1984482082}
   gm2: {fileID: 0}
+  gm3: {fileID: 0}
   me: 0
 --- !u!1 &194288391
 GameObject:
@@ -391,6 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 1984482082}
   gm2: {fileID: 0}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &259484043
 MonoBehaviour:
@@ -607,7 +609,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 509925778}
-        m_MethodName: SoundButton
+        m_MethodName: SoundButtonScene1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -962,7 +964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -335}
+  m_AnchoredPosition: {x: 230, y: -345}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &573623678
@@ -979,6 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 1984482082}
   gm2: {fileID: 0}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &573623679
 MonoBehaviour:
@@ -1284,7 +1287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -335}
+  m_AnchoredPosition: {x: -230, y: -345}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727079482
@@ -1301,6 +1304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 1984482082}
   gm2: {fileID: 0}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &727079483
 MonoBehaviour:
@@ -1567,7 +1571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -70}
+  m_AnchoredPosition: {x: 230, y: -70}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888600363
@@ -1745,7 +1749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -70}
+  m_AnchoredPosition: {x: -230, y: -70}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927804376
@@ -1996,7 +2000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -335}
+  m_AnchoredPosition: {x: -230, y: -345}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1039144027
@@ -2158,7 +2162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -335}
+  m_AnchoredPosition: {x: 0, y: -345}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279421702
@@ -2455,7 +2459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -335}
+  m_AnchoredPosition: {x: 230, y: -345}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691607551
@@ -2545,7 +2549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -335}
+  m_AnchoredPosition: {x: 0, y: -345}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840925555
@@ -2562,6 +2566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 1984482082}
   gm2: {fileID: 0}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &1840925556
 MonoBehaviour:
@@ -2788,7 +2793,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1873799165}
-        m_MethodName: SoundButton
+        m_MethodName: SoundButtonScene1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2896,7 +2901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -70}
+  m_AnchoredPosition: {x: 230, y: -70}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120371278
@@ -2913,6 +2918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 1984482082}
   gm2: {fileID: 0}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &2120371279
 MonoBehaviour:

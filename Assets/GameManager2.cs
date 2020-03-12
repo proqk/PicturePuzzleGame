@@ -25,7 +25,7 @@ public class GameManager2 : MonoBehaviour
     List<Tuple<string, int>> data; //스테이지와 정답 리스트
     List<BoxManager> bm; //박스매니저 리스트
     public ButtonManager ButtonManager; //마지막 스테이지에 도달하면 뒤로 가기 버튼과 동일
-    public TextToSpeech tts;
+    public tts tts;
 
     void Start()
     {
@@ -55,26 +55,45 @@ public class GameManager2 : MonoBehaviour
         bm.Add(box5Image.GetComponent<BoxManager>());
         bm.Add(box6Image.GetComponent<BoxManager>());
 
-
-        this.SetAllnewImage();
         this.q();
     }
 
-    public Sprite GetnewImage()
+    List<int> GetnewImage()
     {
-        int randomQuestionIndex = Random.Range(0, box.Length);
-        return box[randomQuestionIndex];
+        //범위가 너무 커서 뽑는 시간이 많이 걸림
+        //전체 데이터에서 값 하나 뽑고, 값+50 사이에서 6개를 뽑음
+        //중복이면 다시 뽑음
+
+        List<int> num = new List<int>();
+        int randomIndex = Random.Range(data[0].Item2, data[data.Count-1].Item2-30);
+        //끝값은 본인 제외한 범위, +50했을 때 넘어가면 안 됨
+
+        while (num.Count <= 6)
+        {
+            int tmp = Random.Range(data[randomIndex].Item2, data[randomIndex].Item2+30);
+
+            if (!num.Contains(tmp) && tmp<data.Count)
+            {
+                num.Add(tmp);
+            }
+        }
+        for(int i = 0; i < 6; i++)
+        {
+            print("값: " + num[i]);
+        }
+        return num;
     } //각 이미지 박스에서 새 이미지 뽑음
 
-    public void SetAllnewImage()
+    void SetAllnewImage()
     {
-        bm[0].gameObject.GetComponent<Image>().sprite = GetnewImage();
-        bm[1].gameObject.GetComponent<Image>().sprite = GetnewImage();
-        bm[2].gameObject.GetComponent<Image>().sprite = GetnewImage();
-        bm[3].gameObject.GetComponent<Image>().sprite = GetnewImage();
-        bm[4].gameObject.GetComponent<Image>().sprite = GetnewImage();
-        bm[5].gameObject.GetComponent<Image>().sprite = GetnewImage();
-    } //새 이미지 뽑힌 걸로 각 box에 붙임
+        List<int> newImageIndex = new List<int>();
+        newImageIndex = GetnewImage();
+
+        for (int i = 0; i < 6; i++)
+        {
+            bm[i].gameObject.GetComponent<Image>().sprite = box[newImageIndex[i]];
+        }
+    }//새 이미지 뽑힌 걸로 각 box에 붙임
 
     public void recallStage(int n)
     {
@@ -117,10 +136,10 @@ public class GameManager2 : MonoBehaviour
         {
             O.SetActive(false);
             nowStage += 1; //맞으면 다음 스테이지로 자동 이동
-            PlayerPrefs.SetInt("levelReached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
+            PlayerPrefs.SetInt("stage2levelReached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
             if (nowStage == data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
             {
-                ButtonManager.StageToMain();
+                ButtonManager.Scene2ToStage2();
             }
             else this.q(); //그렇지 않다면 다음 스테이지로    
         }
@@ -128,7 +147,7 @@ public class GameManager2 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        tts.read(data[nowStage].Item1);
+        tts.readText(data[nowStage].Item1);
     }
 
     public void q() //스테이지 시작
@@ -138,7 +157,7 @@ public class GameManager2 : MonoBehaviour
         this.SetAllnewImage(); //전체 이미지를 새로 뽑는다
 
         //정답인 이미지를 위에 붙인다(어차피 섞을 거라 1번에다 붙여도ㄱㅊ)
-        bm[0].gameObject.GetComponent<Image>().sprite = box[answer_image - 1];
+        bm[0].gameObject.GetComponent<Image>().sprite = box[answer_image];
         answer = 1; //1번 박스가 정답이다
          
         //위치를 전체 섞는다

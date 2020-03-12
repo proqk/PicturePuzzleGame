@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -70}
+  m_AnchoredPosition: {x: -230, y: -70}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129727175
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 0}
   gm2: {fileID: 1984482082}
+  gm3: {fileID: 0}
   me: 0
 --- !u!1 &194288391
 GameObject:
@@ -391,6 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 0}
   gm2: {fileID: 1984482082}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &259484043
 MonoBehaviour:
@@ -435,7 +437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129727178}
+      - m_Target: {fileID: 259484042}
         m_MethodName: OnClickBox2
         m_Mode: 1
         m_Arguments:
@@ -607,7 +609,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 509925778}
-        m_MethodName: SoundButton
+        m_MethodName: SoundButtonScene2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -962,7 +964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -335}
+  m_AnchoredPosition: {x: 230, y: -345}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &573623678
@@ -979,6 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 0}
   gm2: {fileID: 1984482082}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &573623679
 MonoBehaviour:
@@ -1023,7 +1026,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129727178}
+      - m_Target: {fileID: 573623678}
         m_MethodName: OnClickBox2
         m_Mode: 1
         m_Arguments:
@@ -1284,7 +1287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -335}
+  m_AnchoredPosition: {x: -230, y: -345}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727079482
@@ -1301,6 +1304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 0}
   gm2: {fileID: 1984482082}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &727079483
 MonoBehaviour:
@@ -1345,7 +1349,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129727178}
+      - m_Target: {fileID: 727079482}
         m_MethodName: OnClickBox2
         m_Mode: 1
         m_Arguments:
@@ -1401,8 +1405,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806441495}
-  - component: {fileID: 806441494}
   - component: {fileID: 806441496}
+  - component: {fileID: 806441494}
   m_Layer: 0
   m_Name: tts
   m_TagString: Untagged
@@ -1419,9 +1423,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 806441493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c8c0a988ed7fa4a928261617e545c6, type: 3}
+  m_Script: {fileID: 11500000, guid: c00e03ffff04ac54380b559dd154be68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 806441496}
 --- !u!4 &806441495
 Transform:
   m_ObjectHideFlags: 0
@@ -1567,7 +1572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -70}
+  m_AnchoredPosition: {x: 230, y: -70}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888600363
@@ -1745,7 +1750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -70}
+  m_AnchoredPosition: {x: -230, y: -70}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927804376
@@ -1996,7 +2001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -335}
+  m_AnchoredPosition: {x: -230, y: -345}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1039144027
@@ -2158,7 +2163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -335}
+  m_AnchoredPosition: {x: 0, y: -345}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279421702
@@ -2361,7 +2366,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1604294230}
-        m_MethodName: onClick
+        m_MethodName: Scene2ToStage2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2455,7 +2460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -335}
+  m_AnchoredPosition: {x: 230, y: -345}
   m_SizeDelta: {x: 190, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691607551
@@ -2545,7 +2550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -335}
+  m_AnchoredPosition: {x: 0, y: -345}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840925555
@@ -2562,6 +2567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 0}
   gm2: {fileID: 1984482082}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &1840925556
 MonoBehaviour:
@@ -2606,7 +2612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129727178}
+      - m_Target: {fileID: 1840925555}
         m_MethodName: OnClickBox2
         m_Mode: 1
         m_Arguments:
@@ -2788,7 +2794,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1873799165}
-        m_MethodName: SoundButton
+        m_MethodName: SoundButtonScene2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2896,7 +2902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -70}
+  m_AnchoredPosition: {x: 230, y: -70}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120371278
@@ -2913,6 +2919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm1: {fileID: 0}
   gm2: {fileID: 1984482082}
+  gm3: {fileID: 0}
   me: 0
 --- !u!114 &2120371279
 MonoBehaviour:
@@ -2957,7 +2964,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129727178}
+      - m_Target: {fileID: 2120371278}
         m_MethodName: OnClickBox2
         m_Mode: 1
         m_Arguments:

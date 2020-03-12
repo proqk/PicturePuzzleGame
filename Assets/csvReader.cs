@@ -24,7 +24,6 @@ public class csvReader : MonoBehaviour
             var tmp = new Tuple<string, int>(data_values[0], int.Parse(data_values[1])); //문제, 정답
             list.Add(tmp);
         }
-
         return list;
     }
 }
