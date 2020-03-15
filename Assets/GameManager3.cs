@@ -58,13 +58,15 @@ public class GameManager3 : MonoBehaviour
         //중복이면 다시 뽑음
 
         List<int> num = new List<int>();
-        int randomIndex = Random.Range(data[0].Item2, data[data.Count-1].Item2-30);
-        print("랜덤값: "+randomIndex);
-        //끝값은 본인 제외한 범위, +50했을 때 넘어가면 안 됨
+        int randomIndex = Random.Range(0, data.Count - 30);
+        //끝값은 본인 제외한 범위, +30했을 때 넘어가면 안 됨
 
-        while (num.Count <= 3)
+        //극단적으로 15번을 뽑아도 중복이 아닌 3개가 나올 수도 있지만, 30개 범위 중에서 그럴 확률이 낮기 때문에 이렇게 해봄
+        //이렇게 한 이유: 로딩 시간 때문에
+        for (int i = 0; i < 15; i++)
         {
-            int tmp = Random.Range(data[randomIndex].Item2, data[randomIndex].Item2+30);
+            if (num.Count == 3) break;
+            int tmp = Random.Range(randomIndex, randomIndex + 30);
 
             if (!num.Contains(tmp) && tmp < data.Count)
             {

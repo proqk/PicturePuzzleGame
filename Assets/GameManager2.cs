@@ -65,21 +65,21 @@ public class GameManager2 : MonoBehaviour
         //중복이면 다시 뽑음
 
         List<int> num = new List<int>();
-        int randomIndex = Random.Range(data[0].Item2, data[data.Count-1].Item2-30);
-        //끝값은 본인 제외한 범위, +50했을 때 넘어가면 안 됨
+        int randomIndex = Random.Range(0, data.Count-30);
+        //끝값은 본인 제외한 범위, +30했을 때 넘어가면 안 됨
 
-        while (num.Count <= 6)
+        //극단적으로 20번을 뽑아도 중복 계속 나와서 리스트 6개가 안 찰수도 있지만,
+        //30개 범위 중에서 그럴 확률이 낮기 때문에 이렇게 해봄
+        //이렇게 한 이유: 로딩 시간 때문에
+        for (int i = 0; i < 20; i++)
         {
-            int tmp = Random.Range(data[randomIndex].Item2, data[randomIndex].Item2+30);
+            if (num.Count == 6) break;
+            int tmp = Random.Range(randomIndex, randomIndex+30);
 
-            if (!num.Contains(tmp) && tmp<data.Count)
+            if (!num.Contains(tmp) && tmp < data.Count)
             {
                 num.Add(tmp);
             }
-        }
-        for(int i = 0; i < 6; i++)
-        {
-            print("값: " + num[i]);
         }
         return num;
     } //각 이미지 박스에서 새 이미지 뽑음
@@ -155,11 +155,11 @@ public class GameManager2 : MonoBehaviour
         question.text = data[nowStage].Item1; //문제 텍스트 바꾸기
         answer_image = data[nowStage].Item2; //문제 정답 이미지 인덱스 저장
         this.SetAllnewImage(); //전체 이미지를 새로 뽑는다
-
+        
         //정답인 이미지를 위에 붙인다(어차피 섞을 거라 1번에다 붙여도ㄱㅊ)
         bm[0].gameObject.GetComponent<Image>().sprite = box[answer_image];
         answer = 1; //1번 박스가 정답이다
-         
+        
         //위치를 전체 섞는다
         this.mix();
     }
