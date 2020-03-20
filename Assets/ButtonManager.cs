@@ -41,9 +41,19 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("ThirdStage");
     }
 
+    public void MaintoScene5() //첫 화면에서 설정/앱 정보 화면으로
+    {
+        SceneManager.LoadScene("appInfo");
+    }
+
     public void StageToMain() //스테이지에서 첫화면으로
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void MainToStart()
+    {
+        SceneManager.LoadScene("Start");
     }
 
     public void SoundButtonScene1() //문제 텍스트 읽는 소리 버튼
