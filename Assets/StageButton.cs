@@ -17,6 +17,7 @@ public class StageButton : MonoBehaviour
 
     public void Stage1ToScene1()
     {
+        Debug.Log("들어감");
         GameObject stageNumObject = GameObject.Find("LevelSelector");
         stageNumObject.GetComponent<StageButton>().stageNum = this.stageNum;
         SceneManager.LoadScene("Scene1");

@@ -24,9 +24,9 @@ public class tts : MonoBehaviour
     {
         string url = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q="+inputText+"&tl=ko-KR";
         UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG);
-        yield return www.Send();
+        yield return www.SendWebRequest();
 
-        if (www.isError)
+        if (www.isNetworkError)
         {
             Debug.Log(www.error);
         }
