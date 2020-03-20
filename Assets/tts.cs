@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class tts : MonoBehaviour
@@ -22,10 +23,18 @@ public class tts : MonoBehaviour
     IEnumerator DownloadTheAudio()
     {
         string url = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q="+inputText+"&tl=ko-KR";
-        WWW www = new WWW(url);
-        yield return www;
+        UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG);
+        yield return www.Send();
 
-        audioSource.clip = www.GetAudioClip(false,true, AudioType.MPEG);
-        audioSource.Play();
+        if (www.isError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            audioSource.clip = DownloadHandlerAudioClip.GetContent(www);
+            audioSource.Play();
+
+        }
     }
 }

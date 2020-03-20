@@ -14,7 +14,11 @@ public class LevelLock : MonoBehaviour
         //_ = stageNumObject.GetComponentInChildren<GameObject>(); //이건 왜 되지?
         Button[] stages = stageNumObject.GetComponentsInChildren<Button>();
         string nowScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        
+
+        if (PlayerPrefs.GetInt("stage1levelReached") == 0) PlayerPrefs.SetInt("stage1levelReached", 1);
+        if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 1);
+        if (PlayerPrefs.GetInt("stage3levelReached") == 0) PlayerPrefs.SetInt("stage3levelReached", 1);
+
         if (nowScene == "FirstStage")
         {
             levelat = PlayerPrefs.GetInt("stage1levelReached");

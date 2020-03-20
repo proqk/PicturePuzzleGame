@@ -12,7 +12,7 @@ public class ScaleFix_StartMusic : MonoBehaviour
         BackgroundMusic = GameObject.Find("BackgroundMusic");
         backmusic = BackgroundMusic.GetComponent<AudioSource>(); //배경음악 저장해둠
         if (backmusic.isPlaying)
-        {
+        {   
             return; //배경음악이 재생되고 있다면 패스
         }
         else
@@ -25,6 +25,6 @@ public class ScaleFix_StartMusic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution((int)Screen.width, (int)Screen.height, true);
+        Screen.SetResolution(720, 1280, true);
     }
 }

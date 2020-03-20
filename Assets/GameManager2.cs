@@ -151,7 +151,7 @@ public class GameManager2 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        tts.readText(data[nowStage].Item1);
+        //tts.readText(data[nowStage].Item1);
     }
 
     public void q() //스테이지 시작
