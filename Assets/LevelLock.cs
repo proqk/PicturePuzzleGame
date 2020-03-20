@@ -28,7 +28,7 @@ public class LevelLock : MonoBehaviour
             levelat = PlayerPrefs.GetInt("stage3levelReached");
         }
 
-        for (int i = levelat + 1; i < stages.Length; i++)
+        for (int i = levelat; i < stages.Length; i++)
         {
             stages[i].interactable = false;
         }

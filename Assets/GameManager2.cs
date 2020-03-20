@@ -137,7 +137,7 @@ public class GameManager2 : MonoBehaviour
             O.SetActive(false);
             nowStage += 1; //맞으면 다음 스테이지로 자동 이동
             int openStage = PlayerPrefs.GetInt("stage2levelReached");
-            if (openStage < nowStage) //최대 깬 스테이지보다 전 스테이지면 갱신하면 안 됨
+            if (openStage < nowStage) //최대 깬 스테이지보다 전 스테이지면 갱신하면 안 됨, 더 클 때만 갱신
             {
                 PlayerPrefs.SetInt("stage2levelReached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
             }
