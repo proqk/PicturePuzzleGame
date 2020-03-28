@@ -36,9 +36,9 @@ public class GameManager2 : MonoBehaviour
 
         O.SetActive(false);
         X.SetActive(false);
-        box = Resources.LoadAll<Sprite>("symbol_Images");
-        Array.Sort(box, delegate(Sprite x, Sprite y) {return int.Parse(x.name).CompareTo(int.Parse(y.name)); });
 
+        GameObject symbolImages = GameObject.Find("symbolImages");
+        box = symbolImages.GetComponent<StageButton>().box;
 
         box1Image.GetComponent<BoxManager>().me = 1;
         box2Image.GetComponent<BoxManager>().me = 2;
@@ -65,7 +65,8 @@ public class GameManager2 : MonoBehaviour
         //중복이면 다시 뽑음
 
         List<int> num = new List<int>();
-        int randomIndex = Random.Range(0, data.Count-30);
+
+        int randomIndex = Random.Range(0, 170);
         //끝값은 본인 제외한 범위, +30했을 때 넘어가면 안 됨
 
         //극단적으로 20번을 뽑아도 중복 계속 나와서 리스트 6개가 안 찰수도 있지만,
@@ -76,7 +77,7 @@ public class GameManager2 : MonoBehaviour
             if (num.Count == 6) break;
             int tmp = Random.Range(randomIndex, randomIndex+30);
 
-            if (!num.Contains(tmp) && tmp < data.Count)
+            if (!num.Contains(tmp) && tmp < 200)
             {
                 num.Add(tmp);
             }
@@ -151,7 +152,7 @@ public class GameManager2 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        //tts.readText(data[nowStage].Item1);
+        tts.readText(data[nowStage].Item1);
     }
 
     public void q() //스테이지 시작
@@ -163,7 +164,7 @@ public class GameManager2 : MonoBehaviour
         //정답인 이미지를 위에 붙인다(어차피 섞을 거라 1번에다 붙여도ㄱㅊ)
         bm[0].gameObject.GetComponent<Image>().sprite = box[answer_image];
         answer = 1; //1번 박스가 정답이다
-        
+
         //위치를 전체 섞는다
         this.mix();
     }

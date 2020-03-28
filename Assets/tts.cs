@@ -28,13 +28,14 @@ public class tts : MonoBehaviour
 
         if (www.isNetworkError)
         {
+            Debug.Log("오디오 에러남");
             Debug.Log(www.error);
         }
         else
         {
             audioSource.clip = DownloadHandlerAudioClip.GetContent(www);
             audioSource.Play();
-
+            Debug.Log("오디오 가져옴");
         }
     }
 }

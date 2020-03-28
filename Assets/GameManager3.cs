@@ -36,8 +36,9 @@ public class GameManager3 : MonoBehaviour
 
         O.SetActive(false);
         X.SetActive(false);
-        box = Resources.LoadAll<Sprite>("symbol_Images");
-        Array.Sort(box, delegate(Sprite x, Sprite y) {return int.Parse(x.name).CompareTo(int.Parse(y.name)); });
+
+        GameObject symbolImages = GameObject.Find("symbolImages");
+        box = symbolImages.GetComponent<StageButton>().box;
 
         box1Text.GetComponent<BoxManager>().me = 1;
         box2Text.GetComponent<BoxManager>().me = 2;
@@ -58,7 +59,7 @@ public class GameManager3 : MonoBehaviour
         //중복이면 다시 뽑음
 
         List<int> num = new List<int>();
-        int randomIndex = Random.Range(0, data.Count - 30);
+        int randomIndex = Random.Range(0, 170);
         //끝값은 본인 제외한 범위, +30했을 때 넘어가면 안 됨
 
         //극단적으로 15번을 뽑아도 중복이 아닌 3개가 나올 수도 있지만, 30개 범위 중에서 그럴 확률이 낮기 때문에 이렇게 해봄
@@ -68,7 +69,7 @@ public class GameManager3 : MonoBehaviour
             if (num.Count == 3) break;
             int tmp = Random.Range(randomIndex, randomIndex + 30);
 
-            if (!num.Contains(tmp) && tmp < data.Count)
+            if (!num.Contains(tmp) && tmp < 200)
             {
                 num.Add(tmp);
             }

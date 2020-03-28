@@ -19,8 +19,8 @@ public class StageManager : MonoBehaviour
         StringReader sr = new StringReader(sourcefile.text);
         GameObject content = GameObject.Find("Content");
         int len = sourcefile.text.Split(',').Length;
-
-        for (int i = 1; i <= len; i++)
+        //일단 200개만
+        for (int i = 1; i <= 200; i++)
         {
             GameObject newbutton = Instantiate(button);
             newbutton.transform.SetParent(content.transform);
