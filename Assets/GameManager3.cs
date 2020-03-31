@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
+using System.IO;
 
 /*
  * 스테이지가 시작할 때 각각 박스의 이미지 6개를 가져온다
@@ -19,7 +20,8 @@ public class GameManager3 : MonoBehaviour
     public GameObject questionImage; //문제 이미지 오브젝트
     public Text box1Text, box2Text, box3Text; //문제 텍스트들
     public GameObject O, X; //O, X
-    float[,] mixposition = new float[3, 3] { { 0, -110, 0 }, { 0, -280, 0 }, { 0, -450, 0 } }; //자리 섞기 좌표
+    float[,] mixposition = new float[2, 3] { { 0, -153, 0 }, { 0, -373, 0 } }; //자리 섞기 좌표
+    //float[,] mixposition = new float[3, 3] { { 0, -110, 0 }, { 0, -280, 0 }, { 0, -450, 0 } }; //자리 섞기 좌표
     //float[,] mixposition = new float[6, 3] { { -220, -70, 0 }, { 0, -70, 0 }, { 220, -70, 0 }, { -220, -335, 0 }, { 0, -335, 0 }, { 220, -335, 0 } }; //자리 섞기 좌표
     public csvReader csvreader; //csv파일 읽는 스크립트
     List<Tuple<string, int>> data; //스테이지와 정답 리스트
@@ -37,39 +39,27 @@ public class GameManager3 : MonoBehaviour
         O.SetActive(false);
         X.SetActive(false);
 
-        GameObject symbolImages = GameObject.Find("symbolImages");
-        box = symbolImages.GetComponent<StageButton>().box;
-
         box1Text.GetComponent<BoxManager>().me = 1;
         box2Text.GetComponent<BoxManager>().me = 2;
-        box3Text.GetComponent<BoxManager>().me = 3;
+        //box3Text.GetComponent<BoxManager>().me = 3;
 
         bm = new List<BoxManager>();
         bm.Add(box1Text.GetComponent<BoxManager>());
         bm.Add(box2Text.GetComponent<BoxManager>());
-        bm.Add(box3Text.GetComponent<BoxManager>());
+        //bm.Add(box3Text.GetComponent<BoxManager>());
 
         this.q();
     }
 
     List<int> GetnewText()
     {
-        //범위가 너무 커서 뽑는 시간이 많이 걸림
-        //전체 데이터에서 값 하나 뽑고, 값+30 사이에서 3개를 뽑음
-        //중복이면 다시 뽑음
-
         List<int> num = new List<int>();
-        int randomIndex = Random.Range(0, 170);
-        //끝값은 본인 제외한 범위, +30했을 때 넘어가면 안 됨
 
-        //극단적으로 15번을 뽑아도 중복이 아닌 3개가 나올 수도 있지만, 30개 범위 중에서 그럴 확률이 낮기 때문에 이렇게 해봄
-        //이렇게 한 이유: 로딩 시간 때문에
-        for (int i = 0; i < 15; i++)
+        while (num.Count < 2)
         {
-            if (num.Count == 3) break;
-            int tmp = Random.Range(randomIndex, randomIndex + 30);
-
-            if (!num.Contains(tmp) && tmp < 200)
+            int tmp = Random.Range(0, data.Count);
+            //중복 아님/전체 인덱스를 넘지 않는 수/정답이랑 겹치지 않는 수
+            if (!num.Contains(tmp) && tmp < data.Count && tmp != data[nowStage].Item2)
             {
                 num.Add(tmp);
             }
@@ -102,7 +92,7 @@ public class GameManager3 : MonoBehaviour
         List<int> newTextIndex = new List<int>();
         newTextIndex = GetnewText();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             bm[i].gameObject.GetComponent<Text>().text = data[newTextIndex[i]].Item1;
         }
@@ -165,16 +155,17 @@ public class GameManager3 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        tts.readText(data[nowStage].Item1);
+        tts.readText(data[nowStage-1].Item1);
     }
 
     public void q() //스테이지 시작
     {
-        questionImage.gameObject.GetComponent<Image>().sprite = box[data[nowStage].Item2]; //문제 이미지 바꿈
+        Sprite newImage = Resources.Load<Sprite>(Path.Combine("symbol_Images/", data[nowStage].Item2.ToString()));
+        questionImage.gameObject.GetComponent<Image>().sprite = newImage; //문제 이미지 바꿈
         this.SetAllnewText(); //전체 이미지를 새로 뽑는다
 
         //정답 텍스트를 붙인다-어차피 섞을 것
-        bm[0].gameObject.GetComponent<Text>().text = data[nowStage].Item1;
+        bm[0].gameObject.GetComponent<Text>().text = data[nowStage-1].Item1;
         answer = 1; //1번 박스가 정답이다
          
         //위치를 전체 섞는다
@@ -211,7 +202,7 @@ public class GameManager3 : MonoBehaviour
 
     void mix()
     {
-        int[] Imageshuffle = { 0, 1, 2 };
+        int[] Imageshuffle = { 0, 1 };
         int tmp;
         for (int i = 0; i < Imageshuffle.Length; i++) //배열 숫자를 섞는다
         {
@@ -224,14 +215,14 @@ public class GameManager3 : MonoBehaviour
 
         this.setmix(Imageshuffle[0], box1Text); //섞인 숫자 번호의 좌표로 이미지를 옮긴다
         this.setmix(Imageshuffle[1], box2Text);
-        this.setmix(Imageshuffle[2], box3Text);
+//        this.setmix(Imageshuffle[2], box3Text);
         //this.setmix(Imageshuffle[3], box4Image);
         //this.setmix(Imageshuffle[4], box5Image);
         //this.setmix(Imageshuffle[5], box6Image);
 
         bm[0].me = Imageshuffle[0];
         bm[1].me = Imageshuffle[1];
-        bm[2].me = Imageshuffle[2];
+ //       bm[2].me = Imageshuffle[2];
         //bm[3].me = Imageshuffle[3];
         //bm[4].me = Imageshuffle[4];
         //bm[5].me = Imageshuffle[5];

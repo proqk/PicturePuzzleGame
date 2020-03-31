@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
+using System.IO;
 
 /*
  * 스테이지가 시작할 때 각각 박스의 이미지 6개를 가져온다
@@ -15,7 +16,6 @@ public class GameManager2 : MonoBehaviour
     public int answer, nowStage; //정답, 현재 스테이지
     int answer_image;
     GameObject StageButtonClone;
-    Sprite[] box; //심볼 박스
     public GameObject box1Image, box2Image, box3Image, box4Image, box5Image, box6Image; //이모티콘이 표시될 오브젝트
     public GameObject O, X; //O, X
     float[,] mixposition = new float[6, 3] { { -220, -70, 0 }, { 0, -70, 0 }, { 220, -70, 0 }, { -220, -335, 0 }, { 0, -335, 0 }, { 220, -335, 0 } }; //자리 섞기 좌표
@@ -37,9 +37,6 @@ public class GameManager2 : MonoBehaviour
         O.SetActive(false);
         X.SetActive(false);
 
-        GameObject symbolImages = GameObject.Find("symbolImages");
-        box = symbolImages.GetComponent<StageButton>().box;
-
         box1Image.GetComponent<BoxManager>().me = 1;
         box2Image.GetComponent<BoxManager>().me = 2;
         box3Image.GetComponent<BoxManager>().me = 3;
@@ -58,41 +55,39 @@ public class GameManager2 : MonoBehaviour
         this.q();
     }
 
-    List<int> GetnewImage()
+    List<Sprite> GetnewImage()
     {
-        //범위가 너무 커서 뽑는 시간이 많이 걸림
-        //전체 데이터에서 값 하나 뽑고, 값+50 사이에서 6개를 뽑음
-        //중복이면 다시 뽑음
 
         List<int> num = new List<int>();
+        List<Sprite> imgBox = new List<Sprite>();
 
-        int randomIndex = Random.Range(0, 170);
-        //끝값은 본인 제외한 범위, +30했을 때 넘어가면 안 됨
-
-        //극단적으로 20번을 뽑아도 중복 계속 나와서 리스트 6개가 안 찰수도 있지만,
-        //30개 범위 중에서 그럴 확률이 낮기 때문에 이렇게 해봄
-        //이렇게 한 이유: 로딩 시간 때문에
-        for (int i = 0; i < 20; i++)
+        while (num.Count < 6)
         {
-            if (num.Count == 6) break;
-            int tmp = Random.Range(randomIndex, randomIndex+30);
-
-            if (!num.Contains(tmp) && tmp < 200)
+            int tmp = Random.Range(0, data.Count);
+            //중복 아님/전체 인덱스를 넘지 않는 수/정답이랑 겹치지 않는 수/리소스 파일에 그 이름이 있는지 확인
+            if (!num.Contains(tmp) && tmp < data.Count && tmp != data[nowStage].Item2
+                /*&& File.Exists(Path.Combine("Assets/Resources/symbol_Images/", tmp.ToString() + ".png")) 왠지 이거 안드에선 안 됨*/)
             {
-                num.Add(tmp);
+                Sprite newImage = Resources.Load<Sprite>(Path.Combine("symbol_Images/", tmp.ToString()));
+                if (newImage)
+                {
+                    imgBox.Add(newImage); //실제 이미지 배열
+                    num.Add(tmp); //중복 체크를 위한 숫자 배열
+                }
             }
         }
-        return num;
+
+       return imgBox;
     } //각 이미지 박스에서 새 이미지 뽑음
 
     void SetAllnewImage()
     {
-        List<int> newImageIndex = new List<int>();
+        List<Sprite> newImageIndex = new List<Sprite>();
         newImageIndex = GetnewImage();
 
-        for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)
         {
-            bm[i].gameObject.GetComponent<Image>().sprite = box[newImageIndex[i]];
+            bm[i].gameObject.GetComponent<Image>().sprite = newImageIndex[i];
         }
     }//새 이미지 뽑힌 걸로 각 box에 붙임
 
@@ -152,17 +147,18 @@ public class GameManager2 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        tts.readText(data[nowStage].Item1);
+        tts.readText(data[nowStage-1].Item1);
     }
 
     public void q() //스테이지 시작
     {
-        question.text = data[nowStage].Item1; //문제 텍스트 바꾸기
-        answer_image = data[nowStage].Item2; //문제 정답 이미지 인덱스 저장
+        question.text = data[nowStage-1].Item1; //문제 텍스트 바꾸기, 텍스트는 0부터 시작
+        answer_image = data[nowStage].Item2; //문제 정답 이미지 인덱스 저장, 이미지 이름은 1부터 시작
         this.SetAllnewImage(); //전체 이미지를 새로 뽑는다
-        
+
         //정답인 이미지를 위에 붙인다(어차피 섞을 거라 1번에다 붙여도ㄱㅊ)
-        bm[0].gameObject.GetComponent<Image>().sprite = box[answer_image];
+        Sprite answerImage = Resources.Load<Sprite>(Path.Combine("symbol_images/", answer_image.ToString()));
+        bm[0].gameObject.GetComponent<Image>().sprite = answerImage;
         answer = 1; //1번 박스가 정답이다
 
         //위치를 전체 섞는다

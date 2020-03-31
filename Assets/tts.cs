@@ -22,7 +22,7 @@ public class tts : MonoBehaviour
 
     IEnumerator DownloadTheAudio()
     {
-        string url = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q="+inputText+"&tl=ko-KR";
+        string url = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q="+inputText+"&tl=ko-kr";
         UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG);
         yield return www.SendWebRequest();
 
@@ -35,7 +35,6 @@ public class tts : MonoBehaviour
         {
             audioSource.clip = DownloadHandlerAudioClip.GetContent(www);
             audioSource.Play();
-            Debug.Log("오디오 가져옴");
         }
     }
 }
