@@ -167,7 +167,10 @@ public class GameManager3 : MonoBehaviour
         //정답 텍스트를 붙인다-어차피 섞을 것
         bm[0].gameObject.GetComponent<Text>().text = data[nowStage-1].Item1;
         answer = 1; //1번 박스가 정답이다
-         
+
+        GameObject stagenumObject = GameObject.Find("Stage");
+        stagenumObject.GetComponent<Text>().text = ("스테이지 " + nowStage).ToString();
+
         //위치를 전체 섞는다
         this.mix();
     }

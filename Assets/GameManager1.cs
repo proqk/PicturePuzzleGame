@@ -206,6 +206,9 @@ public class GameManager1 : MonoBehaviour
             answer = 6;
         }
 
+        GameObject stagenumObject = GameObject.Find("Stage");
+        stagenumObject.GetComponent<Text>().text = ("스테이지 " + nowStage).ToString();
+
         //위치를 전체 섞는다
         this.mix();
     }

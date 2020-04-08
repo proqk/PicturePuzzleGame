@@ -18,6 +18,8 @@ public class LevelLock : MonoBehaviour
         if (PlayerPrefs.GetInt("stage1levelReached") == 0) PlayerPrefs.SetInt("stage1levelReached", 1);
         if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 1);
         if (PlayerPrefs.GetInt("stage3levelReached") == 0) PlayerPrefs.SetInt("stage3levelReached", 1);
+        //if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 200);
+        //PlayerPrefs.SetInt("stage3levelReached", 400);
 
         if (nowScene == "FirstStage")
         {

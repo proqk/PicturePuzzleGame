@@ -161,6 +161,9 @@ public class GameManager2 : MonoBehaviour
         bm[0].gameObject.GetComponent<Image>().sprite = answerImage;
         answer = 1; //1번 박스가 정답이다
 
+        GameObject stagenumObject = GameObject.Find("Stage");
+        stagenumObject.GetComponent<Text>().text = ("스테이지 " + nowStage).ToString();
+
         //위치를 전체 섞는다
         this.mix();
     }
