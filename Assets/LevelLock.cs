@@ -14,7 +14,7 @@ public class LevelLock : MonoBehaviour
         //_ = stageNumObject.GetComponentInChildren<GameObject>(); //이건 왜 되지?
         Button[] stages = stageNumObject.GetComponentsInChildren<Button>();
         string nowScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        int nowLevel = GameObject.Find("whatlevel").GetComponent<StageButton>().level;    
+        int nowLevel = GameObject.Find("whatlevel").GetComponent<StageButton>().level;
 
         if (PlayerPrefs.GetInt("stage1level1Reached") == 0) PlayerPrefs.SetInt("stage1level1Reached", 1);
         if (PlayerPrefs.GetInt("stage2level1Reached") == 0) PlayerPrefs.SetInt("stage2level1Reached", 1);
@@ -24,15 +24,16 @@ public class LevelLock : MonoBehaviour
         if (PlayerPrefs.GetInt("stage3level2Reached") == 0) PlayerPrefs.SetInt("stage3level2Reached", 1);
 
         //if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 200); 테스트용
-        //PlayerPrefs.SetInt("stage3levelReached", 400);
+        PlayerPrefs.SetInt("stage1level1Reached", 49);
+        PlayerPrefs.SetInt("stage3level1Reached", 419);
 
         if (nowScene == "FirstStage" && nowLevel == 1) //스테이지1이면서 레벨1
         {
-            levelat = PlayerPrefs.GetInt("stage1level1Reached");
+            levelat = PlayerPrefs.GetInt("stage1level1Reached") + 1;
         }
         else if (nowScene == "FirstStage" && nowLevel == 2) //스테이지1이면서 레벨2
         {
-            levelat = PlayerPrefs.GetInt("stage1level2Reached");
+            levelat = PlayerPrefs.GetInt("stage1level2Reached") + 1;
         }
         else if (nowScene == "SecondStage" && nowLevel == 1) //스테이지2면서 레벨1
         {

@@ -545,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNum: 0
   level: 0
+  lastStage: 0
 --- !u!4 &383611494
 Transform:
   m_ObjectHideFlags: 0
@@ -708,6 +709,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4247566763385319570, guid: bb80230fed27b45459fcfa87e1fb1ced, type: 3}
   filename: symbolstage
+  lastbutton: {fileID: -6309575691286474660, guid: 32bcf1dfde714184a9af4ebe7212f06c,
+    type: 3}
 --- !u!4 &619241382
 Transform:
   m_ObjectHideFlags: 0
@@ -773,6 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c9faefaace7a449a00d0ce6fd49fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laststagenum: 0
 --- !u!114 &660401894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c9faefaace7a449a00d0ce6fd49fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laststagenum: 0
 --- !u!114 &1219245294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,6 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c9faefaace7a449a00d0ce6fd49fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laststagenum: 0
 --- !u!114 &1324511443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c9faefaace7a449a00d0ce6fd49fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laststagenum: 0
 --- !u!114 &1459651882
 MonoBehaviour:
   m_ObjectHideFlags: 0

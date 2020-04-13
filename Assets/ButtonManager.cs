@@ -17,7 +17,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void Scene2ToStage2() //상징->상징 스테이지 화면으로
     {
-        sn = GameObject.Find("LevelSelector");
+        sn = GameObject.Find("LevelSelector"); //눌렀던 스테이지 번호 정보를 가진 오브젝트 삭제
         Destroy(sn);
         SceneManager.LoadScene("SecondStage");
     }
@@ -94,13 +94,6 @@ public class ButtonManager : MonoBehaviour
     {
         gm = GameObject.Find("GameManager");
         gm.GetComponent<GameManager2>().textread();
-
-    }
-
-    public void SoundButtonScene2_1() //문제 텍스트 읽는 소리 버튼
-    {
-        gm = GameObject.Find("GameManager");
-        gm.GetComponent<GameManager2_level1>().textread();
 
     }
 

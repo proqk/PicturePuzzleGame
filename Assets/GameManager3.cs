@@ -155,17 +155,20 @@ public class GameManager3 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        tts.readText(data[nowStage-1].Item1);
+        tts.readText(data[nowStage].Item1);
     }
 
     public void q() //스테이지 시작
     {
+        if (nowLevel == 1) PlayerPrefs.SetInt("stage3level1lastStage", nowStage); //마지막 깬 스테이지 저장
+        if (nowLevel == 2) PlayerPrefs.SetInt("stage3level2lastStage", nowStage);
+
         Sprite newImage = Resources.Load<Sprite>(Path.Combine("symbol_Images/", data[nowStage].Item2.ToString()));
         questionImage.gameObject.GetComponent<Image>().sprite = newImage; //문제 이미지 바꿈
         this.SetAllnewText(); //전체 이미지를 새로 뽑는다
 
         //정답 텍스트를 붙인다-어차피 섞을 것
-        bm[0].gameObject.GetComponent<Text>().text = data[nowStage-1].Item1;
+        bm[0].gameObject.GetComponent<Text>().text = data[nowStage].Item1;
         answer = 1; //1번 박스가 정답이다
 
         //위치를 전체 섞는다

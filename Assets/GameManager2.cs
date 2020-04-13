@@ -15,44 +15,64 @@ public class GameManager2 : MonoBehaviour
 {
     public int answer, nowStage; //정답, 현재 스테이지
     int answer_image;
-    GameObject StageButtonClone;
-    public GameObject box1Image, box2Image, box3Image, box4Image, box5Image, box6Image; //이모티콘이 표시될 오브젝트
+    public GameObject boximage, boxback;
+    Image[] boxBack, boxImage; //이모티콘이 표시될 오브젝트
     public GameObject O, X; //O, X
-    float[,] mixposition = new float[6, 3] { { -220, -70, 0 }, { 0, -70, 0 }, { 220, -70, 0 }, { -220, -335, 0 }, { 0, -335, 0 }, { 220, -335, 0 } }; //자리 섞기 좌표
+    float[,] mixposition;
+    float[,] mixposition_1 = new float[3, 3] { { -220, -211, 0 }, { 0, -211, 0 }, { 220, -211, 0 } };
+    float[,] mixposition_2 = new float[6, 3] { { -220, -70, 0 }, { 0, -70, 0 }, { 220, -70, 0 }, { -220, -335, 0 }, { 0, -335, 0 }, { 220, -335, 0 } }; //자리 섞기 좌표
     Transform[] questBox; //질문 박스(자식 전체)
     public Text question; //문제 텍스트
     public csvReader csvreader; //csv파일 읽는 스크립트
     List<Tuple<string, int>> data; //스테이지와 정답 리스트
-    List<BoxManager> bm; //박스매니저 리스트
+    List<BoxManager> bm = new List<BoxManager>(); //박스매니저 리스트
     public ButtonManager ButtonManager; //마지막 스테이지에 도달하면 뒤로 가기 버튼과 동일
     public tts tts;
-    int nowLevel;
+    int nowLevel, difficulty; //현재 레벨, 난이도(버튼 몇 개인지)
+    string stageLock;
 
     void Start()
     {
         data = csvreader.Read("symbolstage"); //스테이지 정보 불러옴
 
-        StageButtonClone = GameObject.Find("LevelSelector");
-        nowStage = StageButtonClone.GetComponent<StageButton>().stageNum;
+        nowStage = GameObject.Find("LevelSelector").GetComponent<StageButton>().stageNum;
         nowLevel = GameObject.Find("whatlevel").GetComponent<StageButton>().level;
+        boxImage = boximage.GetComponentsInChildren<Image>(); //박스 이미지들
+        boxBack = boxback.GetComponentsInChildren<Image>(); //박스 뒷배경 이미지들
+
+        if (nowLevel == 1)
+        {
+            difficulty = 3;
+            stageLock = "stage2level1Reached";
+            mixposition = mixposition_1;
+        }
+        else if (nowLevel == 2)
+        {
+            difficulty = 6;
+            stageLock = "stage2level2Reached";
+            mixposition = mixposition_2;
+        }
 
         O.SetActive(false);
         X.SetActive(false);
 
-        box1Image.GetComponent<BoxManager>().me = 1;
-        box2Image.GetComponent<BoxManager>().me = 2;
-        box3Image.GetComponent<BoxManager>().me = 3;
-        box4Image.GetComponent<BoxManager>().me = 4;
-        box5Image.GetComponent<BoxManager>().me = 5;
-        box6Image.GetComponent<BoxManager>().me = 6;
+        for (int i = 0; i < boxImage.Length; i++) //일단 다 끈다
+        {
+            boxImage[i].gameObject.SetActive(false);
+            boxBack[i].gameObject.SetActive(false);
+        }
 
-        bm = new List<BoxManager>();
-        bm.Add(box1Image.GetComponent<BoxManager>());
-        bm.Add(box2Image.GetComponent<BoxManager>());
-        bm.Add(box3Image.GetComponent<BoxManager>());
-        bm.Add(box4Image.GetComponent<BoxManager>());
-        bm.Add(box5Image.GetComponent<BoxManager>());
-        bm.Add(box6Image.GetComponent<BoxManager>());
+        for (int i = 0; i < difficulty; i++) //난이도 별로 박스 활성화, 정답 넣기
+        {
+            boxBack[i].gameObject.SetActive(true);
+            boxImage[i].gameObject.SetActive(true);
+
+            boxBack[i].transform.localPosition = new Vector3(mixposition[i, 0], mixposition[i, 1], mixposition[i, 2]);
+            boxImage[i].transform.localPosition = new Vector3(mixposition[i, 0], mixposition[i, 1], mixposition[i, 2]);
+
+            boxImage[i].gameObject.GetComponent<BoxManager>().me = difficulty + 1;
+            bm.Add(boxImage[i].gameObject.GetComponent<BoxManager>());
+        }
 
         this.q();
     }
@@ -63,7 +83,7 @@ public class GameManager2 : MonoBehaviour
         List<int> num = new List<int>();
         List<Sprite> imgBox = new List<Sprite>();
 
-        while (num.Count < 6)
+        while (num.Count < difficulty)
         {
             int tmp = Random.Range(0, data.Count);
             //중복 아님/전체 인덱스를 넘지 않는 수/정답이랑 겹치지 않는 수/리소스 파일에 그 이름이 있는지 확인
@@ -87,7 +107,7 @@ public class GameManager2 : MonoBehaviour
         List<Sprite> newImageIndex = new List<Sprite>();
         newImageIndex = GetnewImage();
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < difficulty; i++)
         {
             bm[i].gameObject.GetComponent<Image>().sprite = newImageIndex[i];
         }
@@ -108,23 +128,19 @@ public class GameManager2 : MonoBehaviour
 
     IEnumerator AvoidFastClick() //선택지를 누르고 O/X가 뜨는 중에는 아무것도 클릭못함
     {
-        box1Image.GetComponent<Button>().interactable = false;
-        box2Image.GetComponent<Button>().interactable = false;
-        box3Image.GetComponent<Button>().interactable = false;
-        box4Image.GetComponent<Button>().interactable = false;
-        box5Image.GetComponent<Button>().interactable = false;
-        box6Image.GetComponent<Button>().interactable = false;
+        for (int i = 0; i < difficulty; i++)
+        {
+            boxImage[i].gameObject.GetComponent<Button>().interactable = false;
+        }
         yield return new WaitForSeconds(1); //1초 대기
     }
     IEnumerator WaitAndPrint()
     {
         yield return AvoidFastClick();
-        box1Image.GetComponent<Button>().interactable = true; //1초 대기 후에는 클릭할 수 있어야 함
-        box2Image.GetComponent<Button>().interactable = true;
-        box3Image.GetComponent<Button>().interactable = true;
-        box4Image.GetComponent<Button>().interactable = true;
-        box5Image.GetComponent<Button>().interactable = true;
-        box6Image.GetComponent<Button>().interactable = true;
+        for (int i = 0; i < difficulty; i++)
+        {
+            boxImage[i].gameObject.GetComponent<Button>().interactable = true; //1초 대기 후에는 클릭할 수 있어야 함
+        }
 
         if (X.activeSelf == true)
         {
@@ -135,14 +151,10 @@ public class GameManager2 : MonoBehaviour
             O.SetActive(false);
             nowStage += 1; //맞으면 다음 스테이지로 자동 이동
 
-            int openStage = 0;
-            if (nowLevel == 1) openStage = PlayerPrefs.GetInt("stage2level1Reached");
-            else if(nowLevel == 2) openStage = PlayerPrefs.GetInt("stage2level2Reached");
-
+            int openStage = PlayerPrefs.GetInt(stageLock);
             if (openStage < nowStage) //최대 깬 스테이지보다 전 스테이지면 갱신하면 안 됨, 더 클 때만 갱신
             {
-                if (nowLevel == 1) PlayerPrefs.SetInt("stage2level1Reached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
-                else if (nowLevel == 2) PlayerPrefs.SetInt("stage2level2Reached", nowStage);
+                PlayerPrefs.SetInt(stageLock, nowStage); //현재 스테이지를 깨면 스테이지락 해제
             }
             if (nowStage == data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
             {
@@ -154,12 +166,15 @@ public class GameManager2 : MonoBehaviour
 
     public void textread() //문제를 읽는다
     {
-        tts.readText(data[nowStage-1].Item1);
+        tts.readText(data[nowStage].Item1);
     }
 
     public void q() //스테이지 시작
     {
-        question.text = data[nowStage-1].Item1; //문제 텍스트 바꾸기, 텍스트는 0부터 시작
+        if (nowLevel == 1) PlayerPrefs.SetInt("stage2level1lastStage", nowStage); //마지막 푼 스테이지 저장
+        if (nowLevel == 2) PlayerPrefs.SetInt("stage2level2lastStage", nowStage);
+
+        question.text = data[nowStage].Item1; //문제 텍스트 바꾸기, 텍스트는 0부터 시작
         answer_image = data[nowStage].Item2; //문제 정답 이미지 인덱스 저장, 이미지 이름은 1부터 시작
         this.SetAllnewImage(); //전체 이미지를 새로 뽑는다
 
@@ -174,8 +189,10 @@ public class GameManager2 : MonoBehaviour
 
     void mix()
     {
-        int[] Imageshuffle = { 0, 1, 2, 3, 4, 5 };
+        int[] Imageshuffle = new int[difficulty];
         int tmp;
+
+        for (int i = 0; i < difficulty; i++) Imageshuffle[i] = i; //배열에 섞을 값을 넣는다
         for (int i = 0; i < Imageshuffle.Length; i++) //배열 숫자를 섞는다
         {
             int rnd = Random.Range(0, Imageshuffle.Length);
@@ -185,22 +202,14 @@ public class GameManager2 : MonoBehaviour
         }
         this.answer = Imageshuffle[answer - 1]; //정답 업데이트
 
-        this.setmix(Imageshuffle[0], box1Image); //섞인 숫자 번호의 좌표로 이미지를 옮긴다
-        this.setmix(Imageshuffle[1], box2Image);
-        this.setmix(Imageshuffle[2], box3Image);
-        this.setmix(Imageshuffle[3], box4Image);
-        this.setmix(Imageshuffle[4], box5Image);
-        this.setmix(Imageshuffle[5], box6Image);
+        for (int i = 0; i < difficulty; i++)
+        {
+            this.setmix(Imageshuffle[i], boxImage[i]); //섞인 숫자 번호의 좌표로 이미지를 옮긴다
+            bm[i].me = Imageshuffle[i];
+        }
+    } //이미지를 섞는다
 
-        bm[0].me = Imageshuffle[0];
-        bm[1].me = Imageshuffle[1];
-        bm[2].me = Imageshuffle[2];
-        bm[3].me = Imageshuffle[3];
-        bm[4].me = Imageshuffle[4];
-        bm[5].me = Imageshuffle[5];
-    } //6개 이미지의 위치를 섞는다
-
-    void setmix(int index, GameObject image)
+    void setmix(int index, Image image)
     {
         float x = mixposition[index, 0];
         float y = mixposition[index, 1];

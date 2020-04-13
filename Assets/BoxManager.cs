@@ -7,7 +7,6 @@ public class BoxManager : MonoBehaviour
 {
     public GameManager1 gm1;
     public GameManager2 gm2;
-    public GameManager2_level1 gm2_1;
     public GameManager3 gm3;
     public int me;
 
@@ -44,18 +43,6 @@ public class BoxManager : MonoBehaviour
         else
         {
             gm3.recallStage(gm3.nowStage);
-        }
-    }
-
-    public void OnClickBox2_1()
-    {
-        if (me == gm2_1.answer)
-        {
-            gm2_1.correct();
-        }
-        else
-        {
-            gm2_1.recallStage(gm2_1.nowStage);
         }
     }
 }
