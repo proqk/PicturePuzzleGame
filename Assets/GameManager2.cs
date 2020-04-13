@@ -26,6 +26,7 @@ public class GameManager2 : MonoBehaviour
     List<BoxManager> bm; //박스매니저 리스트
     public ButtonManager ButtonManager; //마지막 스테이지에 도달하면 뒤로 가기 버튼과 동일
     public tts tts;
+    int nowLevel;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class GameManager2 : MonoBehaviour
 
         StageButtonClone = GameObject.Find("LevelSelector");
         nowStage = StageButtonClone.GetComponent<StageButton>().stageNum;
+        nowLevel = GameObject.Find("whatlevel").GetComponent<StageButton>().level;
 
         O.SetActive(false);
         X.SetActive(false);
@@ -132,10 +134,15 @@ public class GameManager2 : MonoBehaviour
         {
             O.SetActive(false);
             nowStage += 1; //맞으면 다음 스테이지로 자동 이동
-            int openStage = PlayerPrefs.GetInt("stage2levelReached");
+
+            int openStage = 0;
+            if (nowLevel == 1) openStage = PlayerPrefs.GetInt("stage2level1Reached");
+            else if(nowLevel == 2) openStage = PlayerPrefs.GetInt("stage2level2Reached");
+
             if (openStage < nowStage) //최대 깬 스테이지보다 전 스테이지면 갱신하면 안 됨, 더 클 때만 갱신
             {
-                PlayerPrefs.SetInt("stage2levelReached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
+                if (nowLevel == 1) PlayerPrefs.SetInt("stage2level1Reached", nowStage); //현재 스테이지를 깨면 스테이지락 해제
+                else if (nowLevel == 2) PlayerPrefs.SetInt("stage2level2Reached", nowStage);
             }
             if (nowStage == data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
             {
@@ -160,9 +167,6 @@ public class GameManager2 : MonoBehaviour
         Sprite answerImage = Resources.Load<Sprite>(Path.Combine("symbol_images/", answer_image.ToString()));
         bm[0].gameObject.GetComponent<Image>().sprite = answerImage;
         answer = 1; //1번 박스가 정답이다
-
-        GameObject stagenumObject = GameObject.Find("Stage");
-        stagenumObject.GetComponent<Text>().text = ("스테이지 " + nowStage).ToString();
 
         //위치를 전체 섞는다
         this.mix();

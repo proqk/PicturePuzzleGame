@@ -544,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNum: 0
+  level: 0
 --- !u!4 &383611494
 Transform:
   m_ObjectHideFlags: 0
@@ -985,7 +986,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1459651881}
-        m_MethodName: StageToMain
+        m_MethodName: Maintolevel1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

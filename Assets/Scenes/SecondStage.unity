@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNum: 0
+  level: 0
 --- !u!4 &383611494
 Transform:
   m_ObjectHideFlags: 0
@@ -720,6 +721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4247566763385319570, guid: 99f9917dd53797b47ad0dffed4bd0c6c, type: 3}
+  button1: {fileID: 4247566763385319570, guid: 99f9917dd53797b47ad0dffed4bd0c6c, type: 3}
+  button2: {fileID: 4247566763385319570, guid: ebfde8a76a889cf45b9d767e4e1abd5e, type: 3}
   filename: symbolstage
 --- !u!4 &619241382
 Transform:
@@ -907,6 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNum: 0
+  level: 0
 --- !u!4 &734856708
 Transform:
   m_ObjectHideFlags: 0
@@ -1374,7 +1378,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1459651881}
-        m_MethodName: StageToMain
+        m_MethodName: Stage2tolevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -14,24 +14,41 @@ public class LevelLock : MonoBehaviour
         //_ = stageNumObject.GetComponentInChildren<GameObject>(); //이건 왜 되지?
         Button[] stages = stageNumObject.GetComponentsInChildren<Button>();
         string nowScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        int nowLevel = GameObject.Find("whatlevel").GetComponent<StageButton>().level;    
 
-        if (PlayerPrefs.GetInt("stage1levelReached") == 0) PlayerPrefs.SetInt("stage1levelReached", 1);
-        if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 1);
-        if (PlayerPrefs.GetInt("stage3levelReached") == 0) PlayerPrefs.SetInt("stage3levelReached", 1);
-        //if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 200);
+        if (PlayerPrefs.GetInt("stage1level1Reached") == 0) PlayerPrefs.SetInt("stage1level1Reached", 1);
+        if (PlayerPrefs.GetInt("stage2level1Reached") == 0) PlayerPrefs.SetInt("stage2level1Reached", 1);
+        if (PlayerPrefs.GetInt("stage3level1Reached") == 0) PlayerPrefs.SetInt("stage3level1Reached", 1);
+        if (PlayerPrefs.GetInt("stage1level2Reached") == 0) PlayerPrefs.SetInt("stage1level2Reached", 1);
+        if (PlayerPrefs.GetInt("stage2level2Reached") == 0) PlayerPrefs.SetInt("stage2level2Reached", 1);
+        if (PlayerPrefs.GetInt("stage3level2Reached") == 0) PlayerPrefs.SetInt("stage3level2Reached", 1);
+
+        //if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 200); 테스트용
         //PlayerPrefs.SetInt("stage3levelReached", 400);
 
-        if (nowScene == "FirstStage")
+        if (nowScene == "FirstStage" && nowLevel == 1) //스테이지1이면서 레벨1
         {
-            levelat = PlayerPrefs.GetInt("stage1levelReached");
+            levelat = PlayerPrefs.GetInt("stage1level1Reached");
         }
-        else if (nowScene == "SecondStage")
+        else if (nowScene == "FirstStage" && nowLevel == 2) //스테이지1이면서 레벨2
         {
-            levelat = PlayerPrefs.GetInt("stage2levelReached");
+            levelat = PlayerPrefs.GetInt("stage1level2Reached");
         }
-        else if (nowScene == "ThirdStage")
+        else if (nowScene == "SecondStage" && nowLevel == 1) //스테이지2면서 레벨1
         {
-            levelat = PlayerPrefs.GetInt("stage3levelReached");
+            levelat = PlayerPrefs.GetInt("stage2level1Reached");
+        }
+        else if (nowScene == "SecondStage" && nowLevel == 2) //스테이지2면서 레벨2
+        {
+            levelat = PlayerPrefs.GetInt("stage2level2Reached");
+        }
+        else if (nowScene == "ThirdStage" && nowLevel == 1) //스테이지3이면서 레벨1
+        {
+            levelat = PlayerPrefs.GetInt("stage3level1Reached");
+        }
+        else if (nowScene == "ThirdStage" && nowLevel == 2) //스테이지3이면서 레벨2
+        {
+            levelat = PlayerPrefs.GetInt("stage3level2Reached");
         }
 
         for (int i = levelat; i < stages.Length; i++)

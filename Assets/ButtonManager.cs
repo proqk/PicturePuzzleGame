@@ -28,17 +28,36 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("ThirdStage");
     }
 
-    public void MaintoScene1() //첫 화면에서 1스테이지 화면으로
+    public void Maintolevel1() //첫 화면에서 레벨 선택1 화면으로
     {        
-        SceneManager.LoadScene("FirstStage");
+        SceneManager.LoadScene("SelectLevel1");
     }
-    public void MaintoScene2() //첫 화면에서 2스테이지 화면으로
+    public void Maintolevel2() //첫 화면에서 레벨 선택2 화면으로
     {
-        SceneManager.LoadScene("SecondStage");
+        SceneManager.LoadScene("SelectLevel2");
     }
-    public void MaintoScene3() //첫 화면에서 3스테이지 화면으로
+    public void Maintolevel3() //첫 화면에서 레벨 선택3 화면으로
     {
-        SceneManager.LoadScene("ThirdStage");
+        SceneManager.LoadScene("SelectLevel3");
+    }
+
+    public void Stage1tolevel1() //스테이지1 화면에서 레벨 선택1 화면으로
+    {
+        sn = GameObject.Find("whatlevel");
+        Destroy(sn);
+        SceneManager.LoadScene("SelectLevel1");
+    }
+    public void Stage2tolevel2() //스테이지2 화면에서 레벨 선택2 화면으로
+    {
+        sn = GameObject.Find("whatlevel");
+        Destroy(sn);
+        SceneManager.LoadScene("SelectLevel2");
+    }
+    public void Stage3tolevel3() //스테이지3 화면에서 레벨 선택3 화면으로
+    {
+        sn = GameObject.Find("whatlevel");
+        Destroy(sn);
+        SceneManager.LoadScene("SelectLevel3");
     }
 
     public void MaintoScene5() //첫 화면에서 설정/앱 정보 화면으로
@@ -46,12 +65,12 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("appInfo");
     }
 
-    public void StageToMain() //스테이지에서 첫화면으로
+    public void StageToMain() //스테이지에서 메인으로
     {
         SceneManager.LoadScene("Main");
     }
 
-    public void MainToStart()
+    public void MainToStart() //메인에서 첫 화면으로
     {
         SceneManager.LoadScene("Start");
     }
@@ -77,6 +96,14 @@ public class ButtonManager : MonoBehaviour
         gm.GetComponent<GameManager2>().textread();
 
     }
+
+    public void SoundButtonScene2_1() //문제 텍스트 읽는 소리 버튼
+    {
+        gm = GameObject.Find("GameManager");
+        gm.GetComponent<GameManager2_level1>().textread();
+
+    }
+
     public void SoundButtonScene3() //문제 텍스트 읽는 소리 버튼
     {
         gm = GameObject.Find("GameManager");
@@ -101,4 +128,5 @@ public class ButtonManager : MonoBehaviour
     {
         GameObject.Find("ScrollRect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
     }
+
 }
