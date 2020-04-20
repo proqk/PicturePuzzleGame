@@ -1,1 +1,3 @@
 *.rb linguist-language=C#
+yarn-*.ASP linguist-vendored
+jest.config.ASP linguist-vendored
