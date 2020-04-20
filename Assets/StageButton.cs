@@ -34,20 +34,18 @@ public class StageButton : MonoBehaviour
 
     }
 
-    public void Stage2ToScene2_level2()
-    {
-        GameObject stageNumObject = GameObject.Find("LevelSelector");
-
-        stageNumObject.GetComponent<StageButton>().stageNum = this.stageNum;
-        SceneManager.LoadScene("Scene2_level1");
-        DontDestroyOnLoad(stageNumObject);
-    }
-
     public void Stage3ToScene3()
     {
         GameObject stageNumObject = GameObject.Find("LevelSelector");
         stageNumObject.GetComponent<StageButton>().stageNum = this.stageNum;
         SceneManager.LoadScene("Scene3");
+        DontDestroyOnLoad(stageNumObject);
+    }
+    public void Stage4ToScene4()
+    {
+        GameObject stageNumObject = GameObject.Find("LevelSelector");
+        stageNumObject.GetComponent<StageButton>().stageNum = this.stageNum;
+        SceneManager.LoadScene("Scene4");
         DontDestroyOnLoad(stageNumObject);
 
     }
@@ -74,6 +72,14 @@ public class StageButton : MonoBehaviour
         GameObject stageLevelObject = GameObject.Find("whatlevel");
         stageLevelObject.GetComponent<StageButton>().level = n;
         SceneManager.LoadScene("ThirdStage");
+        DontDestroyOnLoad(stageLevelObject);
+
+    }
+    public void leveltoStage4(int n)
+    {
+        GameObject stageLevelObject = GameObject.Find("whatlevel");
+        stageLevelObject.GetComponent<StageButton>().level = n;
+        SceneManager.LoadScene("Stage4");
         DontDestroyOnLoad(stageLevelObject);
 
     }

@@ -28,6 +28,18 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("ThirdStage");
     }
 
+    public void Scene4ToStage4() //학습->어휘학습 표현 스테이지 화면으로
+    {
+        sn = GameObject.Find("LevelSelector");
+        Destroy(sn);
+        SceneManager.LoadScene("Stage4");
+    }
+
+    public void quitbutton()
+    {
+        Application.Quit();
+    }
+
     public void Maintolevel1() //첫 화면에서 레벨 선택1 화면으로
     {        
         SceneManager.LoadScene("SelectLevel1");
@@ -39,6 +51,10 @@ public class ButtonManager : MonoBehaviour
     public void Maintolevel3() //첫 화면에서 레벨 선택3 화면으로
     {
         SceneManager.LoadScene("SelectLevel3");
+    }
+    public void Maintolevel4() //첫 화면에서 레벨 선택4 화면으로
+    {
+        SceneManager.LoadScene("SelectLevel4");
     }
 
     public void Stage1tolevel1() //스테이지1 화면에서 레벨 선택1 화면으로
@@ -58,6 +74,12 @@ public class ButtonManager : MonoBehaviour
         sn = GameObject.Find("whatlevel");
         Destroy(sn);
         SceneManager.LoadScene("SelectLevel3");
+    }
+    public void Stage4tolevel4() //스테이지3 화면에서 레벨 선택3 화면으로
+    {
+        sn = GameObject.Find("whatlevel");
+        Destroy(sn);
+        SceneManager.LoadScene("SelectLevel4");
     }
 
     public void MaintoScene5() //첫 화면에서 설정/앱 정보 화면으로
@@ -103,6 +125,12 @@ public class ButtonManager : MonoBehaviour
         gm.GetComponent<GameManager3>().textread();
 
     }
+    public void SoundButtonScene4() //문제 텍스트 읽는 소리 버튼
+    {
+        gm = GameObject.Find("GameManager");
+        gm.GetComponent<GameManager4>().textread();
+
+    }
 
     public void BackGroundMusicOffButton() //배경음악 키고 끄는 버튼
     {
@@ -122,4 +150,47 @@ public class ButtonManager : MonoBehaviour
         GameObject.Find("ScrollRect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
     }
 
+    bool ispause = false;
+    public Sprite pause, play;
+    public void PauseButton() //일시정지 버튼
+    {
+        ispause = !ispause;
+        if (ispause)
+        {
+            Time.timeScale = 0;
+            this.gameObject.GetComponent<Image>().sprite = pause;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            this.gameObject.GetComponent<Image>().sprite = play;
+        }
+    }
+    //void OnApplicationPause(bool pauseStatus) //어플을 내렸을 때 자동으로 멈추게 하기
+    //{
+    //    ispause = true;
+    //    Time.timeScale = 0;
+    //}
+
+    public void ForwardButton()
+    {
+        GameManager4 gm = GameObject.Find("GameManager").GetComponent<GameManager4>();
+        gm.nowStage += 1;
+
+        if (gm.nowStage == gm.data.Count) //만약 마지막 스테이지라면 스테이지 선택 창으로 돌아감
+        {
+            Scene4ToStage4();
+        }
+        else
+        {
+            gm.q2(); //그렇지 않다면 다음 스테이지로 
+        }
+    }
+
+    public void Stage4ImageBlick() //이미지가 눌리면 텍스트를 보인다
+    {
+        GameManager4 gm = GameObject.Find("GameManager").GetComponent<GameManager4>();
+        gm.boxtext.gameObject.SetActive(true);
+        gm.textread();
+    }
 }

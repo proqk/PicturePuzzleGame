@@ -8,6 +8,7 @@ public class LevelLock : MonoBehaviour
 {
     int levelat; //현재 스테이지 번호, 오픈한 스테이지 번호
     public GameObject stageNumObject;
+    bool isfirstplay = true;
 
     void Start()
     {
@@ -16,16 +17,14 @@ public class LevelLock : MonoBehaviour
         string nowScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         int nowLevel = GameObject.Find("whatlevel").GetComponent<StageButton>().level;
 
-        if (PlayerPrefs.GetInt("stage1level1Reached") == 0) PlayerPrefs.SetInt("stage1level1Reached", 1);
+        if (PlayerPrefs.GetInt("stage1level1Reached") == 0) PlayerPrefs.SetInt("stage1level1Reached", 0);
         if (PlayerPrefs.GetInt("stage2level1Reached") == 0) PlayerPrefs.SetInt("stage2level1Reached", 1);
         if (PlayerPrefs.GetInt("stage3level1Reached") == 0) PlayerPrefs.SetInt("stage3level1Reached", 1);
-        if (PlayerPrefs.GetInt("stage1level2Reached") == 0) PlayerPrefs.SetInt("stage1level2Reached", 1);
+        if (PlayerPrefs.GetInt("stage1level2Reached") == 0) PlayerPrefs.SetInt("stage1level2Reached", 0);
         if (PlayerPrefs.GetInt("stage2level2Reached") == 0) PlayerPrefs.SetInt("stage2level2Reached", 1);
         if (PlayerPrefs.GetInt("stage3level2Reached") == 0) PlayerPrefs.SetInt("stage3level2Reached", 1);
 
-        //if (PlayerPrefs.GetInt("stage2levelReached") == 0) PlayerPrefs.SetInt("stage2levelReached", 200); 테스트용
-        PlayerPrefs.SetInt("stage1level1Reached", 49);
-        PlayerPrefs.SetInt("stage3level1Reached", 419);
+
 
         if (nowScene == "FirstStage" && nowLevel == 1) //스테이지1이면서 레벨1
         {
